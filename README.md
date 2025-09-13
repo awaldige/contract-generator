@@ -5,6 +5,8 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
+*Projeto de Portfólio desenvolvido por **André Waldige***  
+
 ---
 
 ## 🌐 Link Online
@@ -56,15 +58,14 @@ contract-generator/
 │ └── app.js
 └── README.md
 
-yaml
-Copiar código
-
 ---
 
 ## ✨ Observações
-- Projeto desenvolvido para portfólio por **André Waldige**  
 - O PDF gerado é o documento oficial; a pré-visualização serve apenas para conferência  
+- Projeto desenvolvido para portfólio por **André Waldige**
 
 ---
 
-
+## 📣 Contato
+- LinkedIn: [www.linkedin.com/in/awaldige780606](https://www.linkedin.com/in/awaldige780606)  
+- GitHub: [https://github.com/awaldige](https://github.com/awaldige)  
