@@ -78,11 +78,7 @@ Copiar código
 
 ---
 
-## 🌐 Link Online
-Acesse o projeto online no Vercel:  
-[https://aw-contract-generator.vercel.app/](https://aw-contract-generator.vercel.app/)
 
----
 
 ## 📋 Funcionalidades Principais
 
