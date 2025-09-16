@@ -1,159 +1,48 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background:#f4f6f8; color:#222; line-height:1.5; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #222;
-  line-height: 1.5;
-  padding: 20px;
-}
+/* Topbar */
+.topbar { display:flex; justify-content:space-between; align-items:center; background:#2d3748; color:#fff; padding:12px 18px; }
+.brand { display:flex; gap:12px; align-items:center; }
+.brand img { height:38px; }
+.actions button { margin-left:10px; }
 
-/* Container principal */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 20px 25px;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 22px;
-  color: #2d3748;
-}
+/* Layout principal */
+.grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:18px; }
+.panel { background:#fff; padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+h2 { margin-bottom:12px; font-size:18px; }
 
 /* Formulário */
-form label {
-  font-weight: 600;
-  margin: 12px 0 6px;
-  display: block;
-  font-size: 14px;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  margin-bottom: 12px;
-  transition: border 0.2s ease;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: #2563eb;
-  outline: none;
-}
+label { display:block; margin-bottom:12px; font-weight:600; font-size:13px; }
+input, textarea, select { width:100%; padding:8px; margin-top:6px; border:1px solid #ccc; border-radius:6px; font-size:14px; }
+textarea { min-height:80px; resize:vertical; }
+.inline { display:flex; gap:10px; }
+.form-actions { display:flex; gap:10px; margin-top:6px; }
 
 /* Botões */
-.botoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
+.btn { padding:9px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+.primary { background:#2563eb; color:#fff; } 
+.success { background:#16a34a; color:#fff; }
+.secondary { background:#475569; color:#fff; } 
+.ghost { background:#e2e8f0; color:#2d3748; }
+.danger { background:#ef4444; color:#fff; }
 
-.botoes button {
-  flex: 1;
-  min-width: 100px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  transition: background 0.2s ease;
-}
+/* Preview */
+.preview-panel { max-height:78vh; overflow:auto; }
+.contrato { padding:22px; background:#fff; border:1px solid #ddd; font-family:"Times New Roman", serif; font-size:14pt; text-align:justify; line-height:1.6; min-height:300px; }
 
-#btnGerar {
-  background: #2563eb;
-  color: #fff;
-}
+/* Estilo do contrato */
+.contrato .cabecalho { text-align:center; margin-bottom:18px; }
+.contrato .cabecalho img { max-height:70px; display:block; margin:0 auto 8px; }
+.contrato h1 { font-size:18px; letter-spacing:1px; margin-bottom:6px; }
+.contrato .clausula { margin:12px 0; text-indent: 1.2em; }
+.assinaturas { display:flex; justify-content:space-between; margin-top:42px; gap:12px; }
+.assinatura { width:48%; text-align:center; }
+.small-info { font-size:12px; color:#555; margin-top:8px; }
 
-#btnGerar:hover {
-  background: #1e4db7;
-}
+/* Rodapé */
+footer.footer { text-align:center; padding:10px 0; background:#edf2f7; margin-top:12px; font-size:13px; }
 
-#btnExportarPDF {
-  background: #16a34a;
-  color: #fff;
-}
-
-#btnExportarPDF:hover {
-  background: #128636;
-}
-
-#btnSalvar {
-  background: #475569;
-  color: #fff;
-}
-
-#btnSalvar:hover {
-  background: #2d3748;
-}
-
-/* Pré-visualização */
-h2 {
-  margin: 25px 0 12px;
-  font-size: 18px;
-  color: #2d3748;
-}
-
-.preview {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
-  padding: 25px;
-  min-height: 300px;
-  font-family: "Times New Roman", serif;
-  font-size: 14pt;
-  text-align: justify;
-  line-height: 1.6;
-  overflow-x: auto;
-}
-
-/* Estilo de contrato */
-.preview h1 {
-  text-align: center;
-  font-size: 18pt;
-  margin-bottom: 15px;
-}
-
-.preview p {
-  margin: 12px 0;
-  text-indent: 1.5em;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  .botoes {
-    flex-direction: column;
-  }
-
-  .botoes button {
-    width: 100%;
-  }
-
-  .preview {
-    font-size: 12pt;
-    padding: 15px;
-  }
-}
+/* Responsivo */
+@media (max-width:900px) { .grid { grid-template-columns: 1fr; } }
