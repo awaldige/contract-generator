@@ -1,75 +1,159 @@
-/* Responsivo */
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr; /* apenas uma coluna */
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+  line-height: 1.5;
+  padding: 20px;
+}
+
+/* Container principal */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #2d3748;
+}
+
+/* Formulário */
+form label {
+  font-weight: 600;
+  margin: 12px 0 6px;
+  display: block;
+  font-size: 14px;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: border 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+/* Botões */
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.botoes button {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+#btnGerar {
+  background: #2563eb;
+  color: #fff;
+}
+
+#btnGerar:hover {
+  background: #1e4db7;
+}
+
+#btnExportarPDF {
+  background: #16a34a;
+  color: #fff;
+}
+
+#btnExportarPDF:hover {
+  background: #128636;
+}
+
+#btnSalvar {
+  background: #475569;
+  color: #fff;
+}
+
+#btnSalvar:hover {
+  background: #2d3748;
+}
+
+/* Pré-visualização */
+h2 {
+  margin: 25px 0 12px;
+  font-size: 18px;
+  color: #2d3748;
+}
+
+.preview {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  padding: 25px;
+  min-height: 300px;
+  font-family: "Times New Roman", serif;
+  font-size: 14pt;
+  text-align: justify;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+/* Estilo de contrato */
+.preview h1 {
+  text-align: center;
+  font-size: 18pt;
+  margin-bottom: 15px;
+}
+
+.preview p {
+  margin: 12px 0;
+  text-indent: 1.5em;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
   }
 
-  .inline {
-    flex-direction: column; /* inputs lado a lado viram pilha */
+  h1 {
+    font-size: 20px;
   }
 
-  .form-actions {
+  .botoes {
     flex-direction: column;
-    gap: 8px;
   }
 
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  .botoes button {
     width: 100%;
   }
 
-  .actions button {
-    flex: 1;            /* botões ocupam espaço igual */
-    min-width: 120px;   /* garante largura mínima para clique */
-  }
-
-  .assinaturas {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .assinatura {
-    width: 100%; /* assinatura ocupa linha inteira */
-  }
-}
-
-/* Melhorias para telas bem pequenas (até 600px) */
-@media (max-width: 600px) {
-  body {
-    font-size: 15px;
-    padding: 0 8px;
-  }
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .brand img {
-    height: 28px;
-  }
-
-  .preview-panel {
-    max-height: none; /* deixa o contrato expandir normalmente */
-    height: auto;
-    overflow: visible;
-  }
-
-  .contrato {
-    font-size: 13pt;
-    padding: 14px;
-    line-height: 1.5;
-  }
-
-  .contrato h1 {
-    font-size: 16px;
-  }
-
-  footer.footer {
-    font-size: 12px;
-    padding: 8px 4px;
+  .preview {
+    font-size: 12pt;
+    padding: 15px;
   }
 }
