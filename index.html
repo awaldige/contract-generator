@@ -1,50 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gerador de Contratos</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerador de Contrato - AW Technology</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Biblioteca jsPDF para exportar PDF -->
+  <!-- libs para PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>📑 Gerador de Contratos</h1>
+  <header class="topbar">
+    <div class="brand">
+      <img src="aw-tecnologia.png" alt="AW Technology" class="logo" onerror="this.style.display='none'">
+      <h1>Gerador de Contrato</h1>
+    </div>
+    <div class="actions">
+      <button id="btnSalvar" class="btn secondary">Salvar rascunho</button>
+      <button id="btnCarregar" class="btn ghost">Carregar rascunho</button>
+      <button id="btnLimpar" class="btn danger">Limpar</button>
+    </div>
+  </header>
 
-    <!-- Formulário -->
-    <form id="formContrato">
-      <label for="contratante">Contratante:</label>
-      <input type="text" id="contratante" placeholder="Nome do contratante" required />
+  <main class="grid">
+    <section class="panel form-panel">
+      <h2>Dados do Contrato</h2>
 
-      <label for="contratado">Contratado:</label>
-      <input type="text" id="contratado" placeholder="Nome do contratado" required />
+      <form id="formContrato">
+        <label>Tipo de contrato
+          <select id="tipoContrato">
+            <option value="Prestação de Serviços">Prestação de Serviços</option>
+            <option value="Prestação de Serviços (Com prazo)">Prestação de Serviços (Com prazo)</option>
+            <option value="Compra e Venda">Compra e Venda</option>
+          </select>
+        </label>
 
-      <label for="objeto">Objeto do contrato:</label>
-      <textarea id="objeto" placeholder="Descreva o objeto do contrato" required></textarea>
+        <div class="two-cols">
+          <label>Contratante (Nome / Empresa)
+            <input id="contratante" type="text" placeholder="Nome ou Razão Social" required>
+          </label>
+          <label>CPF/CNPJ Contratante
+            <input id="contratanteDoc" type="text" placeholder="CPF ou CNPJ">
+          </label>
+        </div>
 
-      <label for="prazo">Prazo:</label>
-      <input type="text" id="prazo" placeholder="Ex: 12 meses" required />
+        <div class="two-cols">
+          <label>Contratado (Nome / Empresa)
+            <input id="contratado" type="text" placeholder="Nome ou Razão Social" required>
+          </label>
+          <label>CPF/CNPJ Contratado
+            <input id="contratadoDoc" type="text" placeholder="CPF ou CNPJ">
+          </label>
+        </div>
 
-      <label for="valor">Valor (R$):</label>
-      <input type="number" id="valor" placeholder="Ex: 1500" required />
+        <label>Objeto do contrato
+          <textarea id="objeto" rows="3" placeholder="Descreva o objeto do contrato" required></textarea>
+        </label>
 
-      <!-- Botões -->
-      <div class="botoes">
-        <button id="btnGerar">Gerar Contrato</button>
-        <button id="btnExportarPDF">Exportar PDF</button>
-        <button id="btnSalvar">Salvar TXT</button>
+        <div class="two-cols">
+          <label>Valor (R$)
+            <input id="valor" type="number" step="0.01" placeholder="0.00">
+          </label>
+          <label>Prazo (ex.: 6 meses) — opcional
+            <input id="prazo" type="text" placeholder="6 meses, ou deixar vazio">
+          </label>
+        </div>
+
+        <div class="two-cols">
+          <label>Data de início
+            <input id="dataInicio" type="date">
+          </label>
+          <label>Data de término (se aplicável)
+            <input id="dataFim" type="date">
+          </label>
+        </div>
+
+        <label>Cláusulas adicionais (opcional)
+          <textarea id="clausulas" rows="4" placeholder="Cláusulas extras, observações"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button id="btnGerar" class="btn primary" type="button">Gerar Preview</button>
+          <button id="btnExportarPDF" class="btn success" type="button">Exportar PDF</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel preview-panel">
+      <h2>Pré-visualização</h2>
+      <div id="contratoPreview" class="contrato" contenteditable="false">
+        <!-- O conteúdo do contrato será injetado aqui -->
       </div>
-    </form>
+        <p class="info">* A pré-visualização é apenas para conferência. O documento oficial é o PDF gerado.</p>
+    </section>
+  </main>
 
-    <hr />
+  <footer class="footer">
+    <small>Gerador de Contratos • Projeto para portfólio</small>
+  </footer>
 
-    <!-- Preview -->
-    <h2>📖 Pré-visualização</h2>
-    <div id="contratoPreview" class="preview"></div>
-  </div>
-
-  <!-- Script -->
-  <script src="script.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
