@@ -8,24 +8,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCarregar = document.getElementById("btnCarregar");
   const btnLimpar = document.getElementById("btnLimpar");
 
+  // ------------------------------------------------------
+  // Geração do preview
+  // ------------------------------------------------------
   function gerarPreview() {
     const dados = coletarDados();
+    if (!dados.contratante || !dados.contratado || !dados.objeto) {
+      return alert("Preencha os campos obrigatórios: Contratante, Contratado e Objeto do contrato.");
+    }
     preview.innerHTML = montarHTMLContrato(dados);
   }
 
   function coletarDados() {
     return {
       tipoContrato: document.getElementById("tipoContrato").value,
-      contratante: document.getElementById("contratante").value || "__________________",
-      contratanteDoc: document.getElementById("contratanteDoc").value || "__________________",
-      contratado: document.getElementById("contratado").value || "__________________",
-      contratadoDoc: document.getElementById("contratadoDoc").value || "__________________",
-      objeto: document.getElementById("objeto").value || "__________________",
-      valor: document.getElementById("valor").value || "0,00",
-      prazo: document.getElementById("prazo").value || "",
+      contratante: document.getElementById("contratante").value.trim(),
+      contratanteDoc: document.getElementById("contratanteDoc").value.trim(),
+      contratado: document.getElementById("contratado").value.trim(),
+      contratadoDoc: document.getElementById("contratadoDoc").value.trim(),
+      objeto: document.getElementById("objeto").value.trim(),
+      valor: document.getElementById("valor").value.trim(),
+      prazo: document.getElementById("prazo").value.trim(),
       dataInicio: document.getElementById("dataInicio").value,
       dataFim: document.getElementById("dataFim").value,
-      clausulas: document.getElementById("clausulas").value || "Não há cláusulas adicionais."
+      clausulas: document.getElementById("clausulas").value.trim()
     };
   }
 
@@ -35,42 +41,44 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${day}/${m}/${y}`;
   }
 
-  function montarHTMLContrato(dados) {
+  function montarHTMLContrato(d) {
     return `
       <div class="cabecalho">
         <img src="aw-tecnologia.png" alt="AW Tecnologia" onerror="this.style.display='none'">
-        <h1>CONTRATO — ${dados.tipoContrato}</h1>
+        <h1>CONTRATO — ${d.tipoContrato}</h1>
         <hr>
       </div>
 
       <p class="clausula"><strong>1. DAS PARTES</strong><br>
-        CONTRATANTE: ${dados.contratante} — CPF/CNPJ: ${dados.contratanteDoc}.<br>
-        CONTRATADO: ${dados.contratado} — CPF/CNPJ: ${dados.contratadoDoc}.
+        CONTRATANTE: ${d.contratante || "__________________"} — CPF/CNPJ: ${d.contratanteDoc || "__________________"}.<br>
+        CONTRATADO: ${d.contratado || "__________________"} — CPF/CNPJ: ${d.contratadoDoc || "__________________"}.
       </p>
 
-      <p class="clausula"><strong>2. DO OBJETO</strong><br>${dados.objeto}</p>
+      <p class="clausula"><strong>2. DO OBJETO</strong><br>${d.objeto || "__________________"}</p>
 
       <p class="clausula"><strong>3. DO PRAZO</strong><br>
-        Prazo: ${dados.prazo || "Não especificado."} Início: ${formatDate(dados.dataInicio)}. 
-        Término: ${dados.dataFim ? formatDate(dados.dataFim) : "—"}.
+        Prazo: ${d.prazo || "Não especificado."} Início: ${formatDate(d.dataInicio) || "—"}. 
+        Término: ${d.dataFim ? formatDate(d.dataFim) : "—"}.
       </p>
 
       <p class="clausula"><strong>4. DO VALOR</strong><br>
-        Valor: R$ ${Number(dados.valor).toFixed(2).replace(".",",")}
+        ${d.valor ? `R$ ${Number(d.valor).toFixed(2).replace(".",",")}` : "Não especificado."}
       </p>
 
-      <p class="clausula"><strong>5. CLÁUSULAS ADICIONAIS</strong><br>${dados.clausulas}</p>
+      <p class="clausula"><strong>5. CLÁUSULAS ADICIONAIS</strong><br>
+        ${d.clausulas || "Não há cláusulas adicionais."}
+      </p>
 
       <p class="clausula">E por estarem de pleno acordo, assinam o presente instrumento.</p>
 
       <div class="assinaturas">
         <div class="assinatura">
           <p>____________________________________</p>
-          <p><strong>Contratante</strong><br>${dados.contratante}</p>
+          <p><strong>Contratante</strong><br>${d.contratante || "__________________"}</p>
         </div>
         <div class="assinatura">
           <p>____________________________________</p>
-          <p><strong>Contratado</strong><br>${dados.contratado}</p>
+          <p><strong>Contratado</strong><br>${d.contratado || "__________________"}</p>
         </div>
       </div>
 
@@ -78,6 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // ------------------------------------------------------
+  // Rascunho (localStorage)
+  // ------------------------------------------------------
   function salvarRascunho() {
     const dados = {};
     form.querySelectorAll("input, textarea, select").forEach(el => dados[el.id] = el.value);
@@ -104,72 +115,94 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function exportarPDF() {
+  // ------------------------------------------------------
+  // Exportação para PDF
+  // ------------------------------------------------------
+  async function exportarPDF() {
     const dados = coletarDados();
+    if (!dados.contratante || !dados.contratado || !dados.objeto) {
+      return alert("Preencha os campos obrigatórios antes de exportar o PDF.");
+    }
+
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF("p", "pt", "a4");
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     const margin = 40;
-    let y = margin;
     const lineHeight = 18;
-    const pageFont = "Times";
-    const fontSize = 12;
+    let y = margin;
 
-    pdf.setFont(pageFont, "normal");
-    pdf.setFontSize(fontSize);
+    pdf.setFont("Times", "normal");
+    pdf.setFontSize(12);
 
-    // Função auxiliar para quebrar texto
-    function addTextBlock(text, x, yStart, maxWidth) {
-      const lines = pdf.splitTextToSize(text, maxWidth);
-      let yPos = yStart;
+    // Helper para texto com quebra
+    function addTextBlock(text, bold = false) {
+      if (bold) pdf.setFont("Times", "bold"); else pdf.setFont("Times", "normal");
+      const lines = pdf.splitTextToSize(text, pageWidth - 2*margin);
       for (let line of lines) {
-        if (yPos + lineHeight > pageHeight - margin) {
+        if (y + lineHeight > pageHeight - margin) {
           pdf.addPage();
-          yPos = margin;
+          y = margin;
         }
-        pdf.text(line, x, yPos);
-        yPos += lineHeight;
+        pdf.text(line, margin, y);
+        y += lineHeight;
       }
-      return yPos;
     }
 
-    // Cabeçalho
-    y = addTextBlock(`CONTRATO — ${dados.tipoContrato}`, margin, y, pageWidth - 2*margin);
+    // Logo opcional (adicione a logo em base64 se quiser)
+    // Exemplo: const logo = "data:image/png;base64,....";
+    // pdf.addImage(logo, "PNG", margin, y, 80, 40);
+    // y += 50;
+
+    addTextBlock(`CONTRATO — ${dados.tipoContrato}`, true);
     y += 10;
     pdf.setLineWidth(0.5);
     pdf.line(margin, y, pageWidth - margin, y);
     y += 20;
 
-    // Cláusulas
-    y = addTextBlock(`1. DAS PARTES\nCONTRATANTE: ${dados.contratante} — CPF/CNPJ: ${dados.contratanteDoc}\nCONTRATADO: ${dados.contratado} — CPF/CNPJ: ${dados.contratadoDoc}`, margin, y, pageWidth - 2*margin);
+    addTextBlock("1. DAS PARTES", true);
+    addTextBlock(`CONTRATANTE: ${dados.contratante} — CPF/CNPJ: ${dados.contratanteDoc || "__________________"}`);
+    addTextBlock(`CONTRATADO: ${dados.contratado} — CPF/CNPJ: ${dados.contratadoDoc || "__________________"}`);
     y += 10;
-    y = addTextBlock(`2. DO OBJETO\n${dados.objeto}`, margin, y, pageWidth - 2*margin);
+
+    addTextBlock("2. DO OBJETO", true);
+    addTextBlock(dados.objeto);
     y += 10;
-    y = addTextBlock(`3. DO PRAZO\nPrazo: ${dados.prazo || "Não especificado."} Início: ${formatDate(dados.dataInicio)}. Término: ${dados.dataFim ? formatDate(dados.dataFim) : "—"}`, margin, y, pageWidth - 2*margin);
+
+    addTextBlock("3. DO PRAZO", true);
+    addTextBlock(`Prazo: ${dados.prazo || "Não especificado."} Início: ${formatDate(dados.dataInicio) || "—"}. Término: ${dados.dataFim ? formatDate(dados.dataFim) : "—"}`);
     y += 10;
-    y = addTextBlock(`4. DO VALOR\nR$ ${Number(dados.valor).toFixed(2).replace(".",",")}`, margin, y, pageWidth - 2*margin);
+
+    addTextBlock("4. DO VALOR", true);
+    addTextBlock(dados.valor ? `R$ ${Number(dados.valor).toFixed(2).replace(".",",")}` : "Não especificado.");
     y += 10;
-    y = addTextBlock(`5. CLÁUSULAS ADICIONAIS\n${dados.clausulas}`, margin, y, pageWidth - 2*margin);
+
+    addTextBlock("5. CLÁUSULAS ADICIONAIS", true);
+    addTextBlock(dados.clausulas || "Não há cláusulas adicionais.");
     y += 20;
-    y = addTextBlock(`E por estarem de pleno acordo, assinam o presente instrumento.`, margin, y, pageWidth - 2*margin);
+
+    addTextBlock("E por estarem de pleno acordo, assinam o presente instrumento.");
     y += 40;
 
-    // Assinaturas
+    // Assinaturas lado a lado
+    const metade = pageWidth / 2;
     pdf.text("____________________________________", margin, y);
-    pdf.text("____________________________________", pageWidth/2 + 10, y);
+    pdf.text("____________________________________", metade + 20, y);
     y += lineHeight;
     pdf.text("Contratante", margin, y);
-    pdf.text("Contratado", pageWidth/2 + 10, y);
+    pdf.text("Contratado", metade + 20, y);
     y += lineHeight;
     pdf.text(dados.contratante, margin, y);
-    pdf.text(dados.contratado, pageWidth/2 + 10, y);
+    pdf.text(dados.contratado, metade + 20, y);
     y += lineHeight + 10;
     pdf.text("Local e data: __________________________", pageWidth - margin - 200, y);
 
-    pdf.save(`Contrato_${dados.contratante}.pdf`);
+    pdf.save(`Contrato_${dados.contratante || "rascunho"}.pdf`);
   }
 
+  // ------------------------------------------------------
+  // Eventos
+  // ------------------------------------------------------
   btnGerar.addEventListener("click", gerarPreview);
   btnSalvar.addEventListener("click", salvarRascunho);
   btnCarregar.addEventListener("click", carregarRascunho);
