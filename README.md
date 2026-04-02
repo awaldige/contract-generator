@@ -60,6 +60,28 @@ Acesse o sistema:
 5. Opcionalmente, utilize **Salvar rascunho** para continuar depois.
 
 ---
-
 ## 📂 Estrutura do Projeto
 
+```text
+├── index.html          # Interface principal e formulários
+├── assets/
+│   ├── css/
+│   │   └── style.css   # Estilização e media queries (Responsividade)
+│   ├── js/
+│   │   ├── main.js     # Lógica de manipulação do DOM e Rascunho
+│   │   └── pdf.js      # Integração com jsPDF e html2canvas
+│   └── img/            # Assets visuais e screenshots
+└── README.md           # Documentação do sistema
+
+## 🧠 Desafios Técnicos e Soluções
+
+- **Fidelidade do PDF:** O uso do `html2canvas` foi essencial para garantir que a estilização CSS (fontes e espaçamentos) fosse preservada exatamente como na pré-visualização.
+- **Persistência Offline:** Implementação de `LocalStorage` para que o usuário não perca os dados digitados caso a página seja recarregada acidentalmente.
+- **Responsividade:** O formulário foi projetado com Flexbox/Grid para garantir usabilidade tanto em desktops quanto em dispositivos móveis.
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. 
+
+---
+Feito com ☕ por [André Waldige](https://github.com/awaldige)
