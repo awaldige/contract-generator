@@ -20,10 +20,10 @@ Acesse o sistema:
 ---
 
 ## 🖼️ Demonstração Visual
-![IMG_1256](https://github.com/user-attachments/assets/5a01cb59-587b-4435-824f-3fff90e63e9a)
-![IMG_1257](https://github.com/user-attachments/assets/bbb988b8-102a-4e19-b327-d87ac0bff1b8)
-![IMG_1259](https://github.com/user-attachments/assets/e9072e29-6970-4f52-a43e-b3e57c23b755)
-![IMG_1260](https://github.com/user-attachments/assets/e7c673fe-5a3c-45b8-bbf1-c03b458b4c59)
+
+![Captura de tela 2026-04-02 145233](https://github.com/user-attachments/assets/cf02ef58-79e6-43d6-9a8d-7b756d2e6531)
+![Captura de tela 2026-04-02 145036](https://github.com/user-attachments/assets/0fbb6ff2-43de-4aec-9671-46be6702af9c)
+![Captura de tela 2026-04-02 145013](https://github.com/user-attachments/assets/a70159e8-af58-4ca5-8cfe-115992cf51d0)
 
 ---
 ## ✨ Funcionalidades
