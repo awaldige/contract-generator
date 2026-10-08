@@ -5,11 +5,134 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
-Aplicação web para **geração automatizada de contratos**, permitindo preencher dados, visualizar o documento e exportar em PDF pronto para assinatura.
 
-Projeto desenvolvido por **André Waldige** para fins de portfólio e demonstração técnica.
+Aplicação web para geração de contratos, permitindo preencher dados, visualizar o documento dinamicamente e exportar o resultado em PDF.
+
+O projeto foi desenvolvido com **HTML5, CSS3 e JavaScript**, utilizando `html2canvas` e `jsPDF` para geração do documento.
+
+
+
+## ✨ Funcionalidades
+
+* 📥 Inserção de dados do contratante e contratado
+* 📄 Seleção de diferentes tipos de contrato
+* 💰 Campos para valores, prazos e datas
+* 📝 Inclusão de cláusulas e informações adicionais
+* 👁️ Pré-visualização dinâmica do contrato
+* 📑 Exportação do documento em PDF
+* 💾 Salvamento e carregamento de rascunhos
+* 📱 Interface responsiva
 
 ---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia       | Utilização                                            |
+| ---------------- | ----------------------------------------------------- |
+| **HTML5**        | Estrutura da aplicação e formulários                  |
+| **CSS3**         | Estilização, layout e responsividade                  |
+| **JavaScript**   | Lógica e interações da aplicação                      |
+| **html2canvas**  | Captura da pré-visualização para geração do documento |
+| **jsPDF**        | Geração e exportação do arquivo PDF                   |
+| **LocalStorage** | Persistência local dos rascunhos                      |
+
+---
+
+## 🧠 Destaques Técnicos
+
+### 📄 Pré-visualização e PDF
+
+A aplicação permite visualizar o contrato antes da exportação e utiliza `html2canvas` em conjunto com `jsPDF` para gerar o documento em PDF.
+
+### 💾 Persistência Local
+
+O `LocalStorage` permite salvar temporariamente os dados preenchidos, possibilitando recuperar o rascunho posteriormente no mesmo navegador.
+
+### 📱 Responsividade
+
+A interface foi desenvolvida para funcionar em diferentes tamanhos de tela, proporcionando uma experiência adequada em desktops, tablets e smartphones.
+
+### ⚡ Frontend sem Framework
+
+O projeto foi desenvolvido utilizando JavaScript Vanilla, sem dependência de frameworks como React, Vue ou Angular.
+
+---
+
+## 📂 Estrutura do Projeto
+
+```text
+contract-generator/
+│
+├── index.html
+├── style.css
+├── app.js
+└── README.md
+```
+
+---
+
+## 🚀 Como Utilizar
+
+### Online
+
+Acesse:
+
+https://aw-contract-generator.vercel.app/
+
+### Localmente
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/awaldige/contract-generator.git
+```
+
+Entre na pasta:
+
+```bash
+cd contract-generator
+```
+
+Depois, abra o arquivo `index.html` no navegador.
+
+Também é possível utilizar o **Live Server** do VS Code durante o desenvolvimento.
+
+---
+
+## 📝 Fluxo de Utilização
+
+1. Preencha os dados do contrato.
+2. Informe os dados das partes envolvidas.
+3. Adicione valores, prazos e demais informações.
+4. Gere a pré-visualização.
+5. Revise o documento.
+6. Exporte o contrato em PDF.
+7. Opcionalmente, salve o conteúdo como rascunho.
+
+---
+
+
+
+## 🔮 Possíveis Melhorias Futuras
+
+* Mais modelos de contratos
+* Personalização de modelos
+* Histórico de documentos
+* Exportação em outros formatos
+* Sistema de autenticação
+* Armazenamento em banco de dados
+* Compartilhamento de documentos
+* Área administrativa para gerenciamento dos modelos
+
+---
+
+## 🎯 Objetivo do Projeto
+
+O **AW Contract Generator** foi desenvolvido como projeto de portfólio para demonstrar conhecimentos em **desenvolvimento frontend, manipulação dinâmica de documentos, persistência local e geração de arquivos PDF**.
+
+O projeto também demonstra a integração entre diferentes bibliotecas JavaScript para transformar dados preenchidos pelo usuário em um documento formatado.
+
+
 
 ## 🌐 Demonstração Online
 
@@ -25,63 +148,28 @@ Acesse o sistema:
 ![Captura de tela 2026-04-02 145036](https://github.com/user-attachments/assets/0fbb6ff2-43de-4aec-9671-46be6702af9c)
 ![Captura de tela 2026-04-02 145013](https://github.com/user-attachments/assets/a70159e8-af58-4ca5-8cfe-115992cf51d0)
 
----
-## ✨ Funcionalidades
 
-| Recurso | Descrição |
-|----------|-----------|
-| 📥 Inserção de dados | Informações do contratante e contratado |
-| 📄 Tipos de contrato | Prestação de serviços, compra e venda e outros |
-| 💰 Campos adicionais | Valores, prazos, datas e cláusulas extras |
-| 👁 Pré-visualização | Visualização dinâmica antes da exportação |
-| 📑 Exportação PDF | Documento pronto para impressão/assinatura |
-| 💾 Rascunho automático | Salvar e carregar dados temporários |
+
 
 ---
 
-## 🛠 Tecnologias Utilizadas
+## 👨‍💻 Autor
 
-| Tecnologia | Função |
-|------------|--------|
-| HTML5 | Estrutura da aplicação |
-| CSS3 | Estilização e layout responsivo |
-| JavaScript | Lógica e interações |
-| html2canvas | Captura da pré-visualização |
-| jsPDF | Geração do arquivo PDF |
+**André Waldige**
 
----
+Desenvolvedor Full Stack — **AW TECHNOLOGY**
 
-## 🚀 Como Utilizar
+🔗 GitHub:
 
-1. Acesse o projeto online ou abra localmente.
-2. Preencha os dados do contrato.
-3. Clique em **Gerar Preview** para visualizar.
-4. Clique em **Exportar PDF** para salvar o documento.
-5. Opcionalmente, utilize **Salvar rascunho** para continuar depois.
+https://github.com/awaldige
 
 ---
-## 📂 Estrutura do Projeto
 
-```text
-├── index.html          # Interface principal e formulários
-├── assets/
-│   ├── css/
-│   │   └── style.css   # Estilização e media queries (Responsividade)
-│   ├── js/
-│   │   ├── main.js     # Lógica de manipulação do DOM e Rascunho
-│   │   └── pdf.js      # Integração com jsPDF e html2canvas
-│   └── img/            # Assets visuais e screenshots
-└── README.md           # Documentação do sistema
+## 📄 Licença
 
-## 🧠 Desafios Técnicos e Soluções
+Este projeto está sob a licença **MIT**.
 
-- **Fidelidade do PDF:** O uso do `html2canvas` foi essencial para garantir que a estilização CSS (fontes e espaçamentos) fosse preservada exatamente como na pré-visualização.
-- **Persistência Offline:** Implementação de `LocalStorage` para que o usuário não perca os dados digitados caso a página seja recarregada acidentalmente.
-- **Responsividade:** O formulário foi projetado com Flexbox/Grid para garantir usabilidade tanto em desktops quanto em dispositivos móveis.
 
-## 📝 Licença
-
-Este projeto está sob a licença MIT. 
+Projeto desenvolvido por **André Waldige** para fins de portfólio e demonstração técnica.
 
 ---
-Feito com ☕ por [André Waldige](https://github.com/awaldige)
