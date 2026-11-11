@@ -3,173 +3,98 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat&logo=vercel&logoColor=white)
+![jsPDF](https://img.shields.io/badge/jsPDF-PDF-red?style=flat)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)
 
+Aplicação web para criação, visualização, gerenciamento e exportação de contratos em PDF, desenvolvida com HTML5, CSS3 e JavaScript.
 
-Aplicação web para geração de contratos, permitindo preencher dados, visualizar o documento dinamicamente e exportar o resultado em PDF.
+O projeto possui interface responsiva, preenchimento organizado por etapas, pré-visualização do documento e armazenamento local de contratos no navegador.
 
-O projeto foi desenvolvido com **HTML5, CSS3 e JavaScript**, utilizando `html2canvas` e `jsPDF` para geração do documento.
+## 🌐 Demonstração
 
-
+[Acessar AW Contract Generator](https://aw-contract-generator.vercel.app/)
 
 ## ✨ Funcionalidades
 
-* 📥 Inserção de dados do contratante e contratado
-* 📄 Seleção de diferentes tipos de contrato
-* 💰 Campos para valores, prazos e datas
-* 📝 Inclusão de cláusulas e informações adicionais
-* 👁️ Pré-visualização dinâmica do contrato
-* 📑 Exportação do documento em PDF
-* 💾 Salvamento e carregamento de rascunhos
-* 📱 Interface responsiva
+- Criação de contratos a partir de modelos disponíveis.
+- Formulário organizado por seções.
+- Cadastro de contratante e contratado.
+- Descrição do objeto do contrato.
+- Definição de valores e prazos.
+- Inclusão de cláusulas personalizadas.
+- Pré-visualização do contrato em formato A4.
+- Exportação do documento em PDF.
+- Salvamento de múltiplos contratos no navegador.
+- Carregamento, duplicação e exclusão de contratos salvos.
+- Recuperação de rascunho de uma versão anterior.
+- Validação de campos obrigatórios e datas.
+- Interface responsiva para diferentes dispositivos.
 
----
+## 🛠️ Tecnologias utilizadas
 
-## 🛠️ Tecnologias Utilizadas
+| Tecnologia | Aplicação |
+|---|---|
+| HTML5 | Estrutura da aplicação |
+| CSS3 | Layout, identidade visual e responsividade |
+| JavaScript | Lógica, validações e gerenciamento dos contratos |
+| LocalStorage | Armazenamento local dos documentos |
+| jsPDF | Geração e exportação de arquivos PDF |
+| Vercel | Hospedagem e publicação |
 
-| Tecnologia       | Utilização                                            |
-| ---------------- | ----------------------------------------------------- |
-| **HTML5**        | Estrutura da aplicação e formulários                  |
-| **CSS3**         | Estilização, layout e responsividade                  |
-| **JavaScript**   | Lógica e interações da aplicação                      |
-| **html2canvas**  | Captura da pré-visualização para geração do documento |
-| **jsPDF**        | Geração e exportação do arquivo PDF                   |
-| **LocalStorage** | Persistência local dos rascunhos                      |
+## 🎨 Interface
 
----
+O projeto utiliza uma identidade visual moderna, com tons escuros, detalhes em azul e elementos de destaque para facilitar a navegação.
 
-## 🧠 Destaques Técnicos
+A interface foi organizada em duas áreas principais:
 
-### 📄 Pré-visualização e PDF
+- **Formulário:** preenchimento das informações do contrato.
+- **Pré-visualização:** visualização do documento antes da exportação.
 
-A aplicação permite visualizar o contrato antes da exportação e utiliza `html2canvas` em conjunto com `jsPDF` para gerar o documento em PDF.
+## 🚀 Como executar localmente
 
-### 💾 Persistência Local
+1. Clone este repositório:
 
-O `LocalStorage` permite salvar temporariamente os dados preenchidos, possibilitando recuperar o rascunho posteriormente no mesmo navegador.
+   ```bash
+   git clone https://github.com/awaldige/contract-generator.git
+   ```
 
-### 📱 Responsividade
+2. Entre na pasta:
 
-A interface foi desenvolvida para funcionar em diferentes tamanhos de tela, proporcionando uma experiência adequada em desktops, tablets e smartphones.
+   ```bash
+   cd contract-generator
+   ```
 
-### ⚡ Frontend sem Framework
+3. Abra o arquivo `index.html` no navegador ou utilize a extensão Live Server do Visual Studio Code.
 
-O projeto foi desenvolvido utilizando JavaScript Vanilla, sem dependência de frameworks como React, Vue ou Angular.
+Não é necessário configurar banco de dados ou backend.
 
----
+## 💾 Armazenamento
 
-## 📂 Estrutura do Projeto
+Os contratos são armazenados no `LocalStorage` do navegador.
 
-```text
-contract-generator/
-│
-├── index.html
-├── style.css
-├── app.js
-└── README.md
-```
+Isso permite salvar e recuperar documentos no mesmo navegador e dispositivo. Os dados não são sincronizados entre dispositivos e podem ser perdidos se o armazenamento do navegador for apagado.
 
----
+## 📄 Exportação em PDF
 
-## 🚀 Como Utilizar
+A aplicação utiliza a biblioteca jsPDF para gerar documentos em PDF no formato A4, com organização de conteúdo, quebras de página e identificação das páginas.
 
-### Online
+## ⚠️ Aviso importante
 
-Acesse:
+Este projeto é uma ferramenta demonstrativa para criação de documentos e modelos de contratos.
 
-https://aw-contract-generator.vercel.app/
+Os documentos gerados devem ser revisados e adaptados às necessidades de cada situação. A aplicação não substitui a orientação de um profissional jurídico e não garante, por si só, a validade legal dos contratos.
 
-### Localmente
+Não utilize informações confidenciais ou dados reais sensíveis em ambientes de demonstração.
 
-Clone o repositório:
+## 👨‍💻 Desenvolvido por
 
-```bash
-git clone https://github.com/awaldige/contract-generator.git
-```
+**André Waldige — AW TECHNOLOGY**
 
-Entre na pasta:
+Desenvolvimento de sistemas web, aplicações personalizadas e soluções digitais.
 
-```bash
-cd contract-generator
-```
+- Portfólio: https://andre-waldige.vercel.app/
+- GitHub: https://github.com/awaldige
 
-Depois, abra o arquivo `index.html` no navegador.
+## 📜 Licença
 
-Também é possível utilizar o **Live Server** do VS Code durante o desenvolvimento.
-
----
-
-## 📝 Fluxo de Utilização
-
-1. Preencha os dados do contrato.
-2. Informe os dados das partes envolvidas.
-3. Adicione valores, prazos e demais informações.
-4. Gere a pré-visualização.
-5. Revise o documento.
-6. Exporte o contrato em PDF.
-7. Opcionalmente, salve o conteúdo como rascunho.
-
----
-
-
-
-## 🔮 Possíveis Melhorias Futuras
-
-* Mais modelos de contratos
-* Personalização de modelos
-* Histórico de documentos
-* Exportação em outros formatos
-* Sistema de autenticação
-* Armazenamento em banco de dados
-* Compartilhamento de documentos
-* Área administrativa para gerenciamento dos modelos
-
----
-
-## 🎯 Objetivo do Projeto
-
-O **AW Contract Generator** foi desenvolvido como projeto de portfólio para demonstrar conhecimentos em **desenvolvimento frontend, manipulação dinâmica de documentos, persistência local e geração de arquivos PDF**.
-
-O projeto também demonstra a integração entre diferentes bibliotecas JavaScript para transformar dados preenchidos pelo usuário em um documento formatado.
-
-
-
-## 🌐 Demonstração Online
-
-Acesse o sistema:
-
-🔗 https://aw-contract-generator.vercel.app/
-
----
-
-## 🖼️ Demonstração Visual
-
-![Captura de tela 2026-04-02 145233](https://github.com/user-attachments/assets/cf02ef58-79e6-43d6-9a8d-7b756d2e6531)
-![Captura de tela 2026-04-02 145036](https://github.com/user-attachments/assets/0fbb6ff2-43de-4aec-9671-46be6702af9c)
-![Captura de tela 2026-04-02 145013](https://github.com/user-attachments/assets/a70159e8-af58-4ca5-8cfe-115992cf51d0)
-
-
-
-
----
-
-## 👨‍💻 Autor
-
-**André Waldige**
-
-Desenvolvedor Full Stack — **AW TECHNOLOGY**
-
-🔗 GitHub:
-
-https://github.com/awaldige
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença **MIT**.
-
-
-Projeto desenvolvido por **André Waldige** para fins de portfólio e demonstração técnica.
-
----
+Este projeto está sob a licença MIT.

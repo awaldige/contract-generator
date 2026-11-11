@@ -1,105 +1,578 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gerador de Contrato - AW Technology</title>
-  
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='80'%3E📄%3C/text%3E%3C/svg%3E">
-  
-  <link rel="stylesheet" href="style.css" />
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#0b1120">
+    <meta name="description" content="AW Contract Generator — Crie, organize e exporte contratos em PDF com praticidade.">
+    <meta name="author" content="André Waldige - AW TECHNOLOGY">
+
+    <title>AW Contract Generator | AW TECHNOLOGY</title>
+
+    <link
+        rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b1120'/%3E%3Ctext x='50%25' y='65%25' font-size='43' text-anchor='middle' fill='%233b82f6' font-family='Arial' font-weight='bold'%3EAW%3C/text%3E%3C/svg%3E"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+        defer
+    ></script>
+
+    <script src="app.js" defer></script>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <h1>Gerador de Contrato</h1>
+
+    <div class="app-shell">
+
+        <!-- CABEÇALHO -->
+
+        <header class="topbar">
+
+            <a
+                href="#"
+                class="brand"
+                aria-label="AW Technology - Página inicial"
+            >
+                <div class="brand-logo">AW</div>
+
+                <div class="brand-info">
+                    <strong>AW TECHNOLOGY</strong>
+                    <span>CONTRACT GENERATOR</span>
+                </div>
+            </a>
+
+            <div class="topbar-actions">
+
+                <button
+                    id="btnSalvar"
+                    class="btn btn-outline"
+                    type="button"
+                >
+                    <span class="btn-icon" aria-hidden="true">▣</span>
+                    Salvar rascunho
+                </button>
+
+                <button
+                    id="btnCarregar"
+                    class="btn btn-outline"
+                    type="button"
+                >
+                    <span class="btn-icon" aria-hidden="true">↻</span>
+                    Carregar
+                </button>
+
+                <button
+                    id="btnLimpar"
+                    class="btn btn-danger-outline"
+                    type="button"
+                >
+                    Limpar
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+
+        <main class="main-container">
+
+            <section class="page-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        <span class="status-dot"></span>
+                        FERRAMENTA DE DOCUMENTOS
+                    </span>
+
+                    <h1>Gerador de contratos</h1>
+
+                    <p>
+                        Crie documentos personalizados, confira os detalhes
+                        e exporte seus contratos em PDF.
+                    </p>
+
+                </div>
+
+                <div class="heading-badge">
+                    <span>✦</span>
+                    AW TECHNOLOGY
+                </div>
+
+            </section>
+
+            <!-- PAINÉIS -->
+
+            <div class="workspace">
+
+                <!-- FORMULÁRIO -->
+
+                <section class="panel form-panel">
+
+                    <div class="panel-heading">
+
+                        <div>
+                            <span class="section-label">CONFIGURAÇÃO</span>
+                            <h2>Dados do contrato</h2>
+                            <p>
+                                Preencha as informações para gerar seu documento.
+                            </p>
+                        </div>
+
+                        <div class="panel-icon" aria-hidden="true">▤</div>
+
+                    </div>
+
+                    <form id="formContrato" autocomplete="on">
+
+                        <!-- TIPO -->
+
+                        <div class="form-section">
+
+                            <div class="section-heading">
+
+                                <span class="step-number">01</span>
+
+                                <div>
+                                    <h3>Tipo de documento</h3>
+                                    <p>Selecione o modelo desejado.</p>
+                                </div>
+
+                            </div>
+
+                            <label for="tipoContrato">
+                                Tipo de contrato
+                            </label>
+
+                            <select
+                                id="tipoContrato"
+                                name="tipoContrato"
+                            >
+                                <option value="Prestação de Serviços">
+                                    Prestação de Serviços
+                                </option>
+
+                                <option value="Prestação de Serviços (Com prazo)">
+                                    Prestação de Serviços com prazo
+                                </option>
+
+                                <option value="Compra e Venda">
+                                    Compra e Venda
+                                </option>
+                            </select>
+
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <!-- PARTES -->
+
+                        <div class="form-section">
+
+                            <div class="section-heading">
+
+                                <span class="step-number">02</span>
+
+                                <div>
+                                    <h3>Partes envolvidas</h3>
+                                    <p>
+                                        Identifique os participantes do contrato.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="contratante">
+                                    Contratante
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="contratante"
+                                    name="contratante"
+                                    type="text"
+                                    placeholder="Nome ou razão social"
+                                    autocomplete="name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="contratanteDoc">
+                                    CPF/CNPJ do contratante
+                                </label>
+
+                                <input
+                                    id="contratanteDoc"
+                                    name="contratanteDoc"
+                                    type="text"
+                                    placeholder="Documento de identificação"
+                                    autocomplete="off"
+                                >
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="contratado">
+                                    Contratado
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="contratado"
+                                    name="contratado"
+                                    type="text"
+                                    placeholder="Nome ou razão social"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="contratadoDoc">
+                                    CPF/CNPJ do contratado
+                                </label>
+
+                                <input
+                                    id="contratadoDoc"
+                                    name="contratadoDoc"
+                                    type="text"
+                                    placeholder="Documento de identificação"
+                                    autocomplete="off"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <!-- OBJETO -->
+
+                        <div class="form-section">
+
+                            <div class="section-heading">
+
+                                <span class="step-number">03</span>
+
+                                <div>
+                                    <h3>Objeto do contrato</h3>
+                                    <p>
+                                        Descreva o serviço, produto ou acordo.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="objeto">
+                                    Descrição do objeto
+                                    <span class="required">*</span>
+                                </label>
+
+                                <textarea
+                                    id="objeto"
+                                    name="objeto"
+                                    rows="4"
+                                    placeholder="Descreva detalhadamente o objeto do contrato..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <!-- VALORES E PRAZOS -->
+
+                        <div class="form-section">
+
+                            <div class="section-heading">
+
+                                <span class="step-number">04</span>
+
+                                <div>
+                                    <h3>Valores e prazos</h3>
+                                    <p>
+                                        Defina as condições comerciais e datas.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="form-grid">
+
+                                <div class="field-group">
+
+                                    <label for="valor">
+                                        Valor do contrato (R$)
+                                    </label>
+
+                                    <input
+                                        id="valor"
+                                        name="valor"
+                                        type="text"
+                                        inputmode="decimal"
+                                        autocomplete="off"
+                                        placeholder="Ex.: 1.800,00"
+                                        aria-describedby="valorAjuda"
+                                    >
+
+                                    <small id="valorAjuda">
+                                        Informe o valor no formato brasileiro.
+                                        Exemplo: 1.800,00.
+                                    </small>
+
+                                </div>
+
+                                <div class="field-group">
+
+                                    <label for="prazo">
+                                        Prazo de execução
+                                    </label>
+
+                                    <input
+                                        id="prazo"
+                                        name="prazo"
+                                        type="text"
+                                        placeholder="Ex.: 6 meses"
+                                    >
+
+                                </div>
+
+                                <div class="field-group">
+
+                                    <label for="dataInicio">
+                                        Data de início
+                                    </label>
+
+                                    <input
+                                        id="dataInicio"
+                                        name="dataInicio"
+                                        type="date"
+                                    >
+
+                                </div>
+
+                                <div class="field-group">
+
+                                    <label for="dataFim">
+                                        Data de término
+                                    </label>
+
+                                    <input
+                                        id="dataFim"
+                                        name="dataFim"
+                                        type="date"
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-divider"></div>
+
+                        <!-- CLÁUSULAS -->
+
+                        <div class="form-section">
+
+                            <div class="section-heading">
+
+                                <span class="step-number">05</span>
+
+                                <div>
+                                    <h3>Cláusulas adicionais</h3>
+                                    <p>
+                                        Inclua condições e observações complementares.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="field-group">
+
+                                <label for="clausulas">
+                                    Informações adicionais
+                                </label>
+
+                                <textarea
+                                    id="clausulas"
+                                    name="clausulas"
+                                    rows="5"
+                                    placeholder="Digite cláusulas adicionais ou observações..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                        <!-- AÇÕES -->
+
+                        <div class="form-actions">
+
+                            <button
+                                id="btnGerar"
+                                class="btn btn-primary"
+                                type="button"
+                            >
+                                <span aria-hidden="true">▤</span>
+                                Gerar pré-visualização
+                            </button>
+
+                            <button
+                                id="btnExportarPDF"
+                                class="btn btn-success"
+                                type="button"
+                            >
+                                <span aria-hidden="true">↓</span>
+                                Exportar PDF
+                            </button>
+
+                        </div>
+
+                        <p class="form-footnote">
+                            <span aria-hidden="true">ℹ</span>
+                            Confira todos os dados antes de exportar o documento.
+                        </p>
+
+                    </form>
+
+                </section>
+
+                <!-- PRÉ-VISUALIZAÇÃO -->
+
+                <section class="panel preview-panel">
+
+                    <div class="panel-heading preview-heading">
+
+                        <div>
+                            <span class="section-label">DOCUMENTO</span>
+                            <h2>Pré-visualização</h2>
+                            <p>
+                                Confira como ficará o documento final.
+                            </p>
+                        </div>
+
+                        <div class="preview-status">
+                            <span class="status-dot"></span>
+                            Prévia
+                        </div>
+
+                    </div>
+
+                    <div class="preview-toolbar">
+                        <span>DOCUMENTO A4</span>
+                        <span>Visualização do contrato</span>
+                    </div>
+
+                    <div class="preview-area">
+
+                        <div
+                            id="contratoPreview"
+                            class="contrato"
+                            contenteditable="false"
+                            aria-live="polite"
+                            aria-label="Pré-visualização do contrato"
+                        >
+
+                            <div class="empty-preview">
+
+                                <div class="empty-icon">▤</div>
+
+                                <h3>Seu contrato aparecerá aqui</h3>
+
+                                <p>
+                                    Preencha os dados ao lado e clique em
+                                    "Gerar pré-visualização" para visualizar
+                                    seu documento.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="preview-info">
+                        <span aria-hidden="true">ⓘ</span>
+                        A pré-visualização é destinada à conferência.
+                        Revise o documento antes de utilizá-lo.
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- AVISO -->
+
+            <section class="legal-notice">
+
+                <div class="legal-icon" aria-hidden="true">!</div>
+
+                <div>
+
+                    <strong>Importante: utilização dos modelos</strong>
+
+                    <p>
+                        Os documentos gerados são modelos de apoio.
+                        A aplicação não substitui orientação jurídica.
+                        Recomenda-se a revisão por profissional habilitado
+                        antes da assinatura ou utilização oficial.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- RODAPÉ -->
+
+        <footer class="footer">
+
+            <div class="footer-brand">
+                <strong>AW TECHNOLOGY</strong>
+                <span>Desenvolvimento de soluções inteligentes</span>
+            </div>
+
+            <p>
+                AW Contract Generator
+                <span>•</span>
+                Projeto de portfólio
+                <span>•</span>
+                2026
+            </p>
+
+        </footer>
+
     </div>
-    <div class="actions">
-      <button id="btnSalvar" class="btn secondary">Salvar rascunho</button>
-      <button id="btnCarregar" class="btn ghost">Carregar rascunho</button>
-      <button id="btnLimpar" class="btn danger">Limpar</button>
-    </div>
-  </header>
 
-  <main class="grid">
-    <section class="panel form-panel">
-      <h2>Dados do Contrato</h2>
-
-      <form id="formContrato">
-        <label>Tipo de contrato
-          <select id="tipoContrato">
-            <option value="Prestação de Serviços">Prestação de Serviços</option>
-            <option value="Prestação de Serviços (Com prazo)">Prestação de Serviços (Com prazo)</option>
-            <option value="Compra e Venda">Compra e Venda</option>
-          </select>
-        </label>
-
-        <div class="two-cols">
-          <label>Contratante (Nome / Empresa)
-            <input id="contratante" type="text" placeholder="Nome ou Razão Social" required>
-          </label>
-          <label>CPF/CNPJ Contratante
-            <input id="contratanteDoc" type="text" placeholder="CPF ou CNPJ">
-          </label>
-        </div>
-
-        <div class="two-cols">
-          <label>Contratado (Nome / Empresa)
-            <input id="contratado" type="text" placeholder="Nome ou Razão Social" required>
-          </label>
-          <label>CPF/CNPJ Contratado
-            <input id="contratadoDoc" type="text" placeholder="CPF ou CNPJ">
-          </label>
-        </div>
-
-        <label>Objeto do contrato
-          <textarea id="objeto" rows="3" placeholder="Descreva o objeto do contrato" required></textarea>
-        </label>
-
-        <div class="two-cols">
-          <label>Valor (R$)
-            <input id="valor" type="number" step="0.01" placeholder="0.00">
-          </label>
-          <label>Prazo (ex.: 6 meses) — opcional
-            <input id="prazo" type="text" placeholder="6 meses, ou deixar vazio">
-          </label>
-        </div>
-
-        <div class="two-cols">
-          <label>Data de início
-            <input id="dataInicio" type="date">
-          </label>
-          <label>Data de término (se aplicável)
-            <input id="dataFim" type="date">
-          </label>
-        </div>
-
-        <label>Cláusulas adicionais (opcional)
-          <textarea id="clausulas" rows="4" placeholder="Cláusulas extras, observações"></textarea>
-        </label>
-
-        <div class="form-actions">
-          <button id="btnGerar" class="btn primary" type="button">Gerar Preview</button>
-          <button id="btnExportarPDF" class="btn success" type="button">Exportar PDF</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="panel preview-panel">
-      <h2>Pré-visualização</h2>
-      <div id="contratoPreview" class="contrato" contenteditable="false">
-        </div>
-      <p class="info">* A pré-visualização é apenas para conferência. O documento oficial é o PDF gerado.</p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <small>Gerador de Contratos • Projeto para portfólio • AW Technology 2026</small>
-  </footer>
-
-  <script src="app.js"></script>
 </body>
 </html>
