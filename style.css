@@ -1,48 +1,980 @@
-/* Reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background:#f4f6f8; color:#222; line-height:1.5; }
 
-/* Topbar */
-.topbar { display:flex; justify-content:space-between; align-items:center; background:#2d3748; color:#fff; padding:12px 18px; }
-.brand { display:flex; gap:12px; align-items:center; }
-.brand img { height:38px; }
-.actions button { margin-left:10px; }
+/* =========================================
+   AW CONTRACT GENERATOR
+   Identidade visual AW TECHNOLOGY
+   ========================================= */
 
-/* Layout principal */
-.grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:18px; }
-.panel { background:#fff; padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-h2 { margin-bottom:12px; font-size:18px; }
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Formulário */
-label { display:block; margin-bottom:12px; font-weight:600; font-size:13px; }
-input, textarea, select { width:100%; padding:8px; margin-top:6px; border:1px solid #ccc; border-radius:6px; font-size:14px; }
-textarea { min-height:80px; resize:vertical; }
-.inline { display:flex; gap:10px; }
-.form-actions { display:flex; gap:10px; margin-top:6px; }
+:root {
+    --bg-main: #0b1120;
+    --bg-secondary: #101a2d;
+    --bg-panel: #121e32;
+    --bg-input: #0d1729;
 
-/* Botões */
-.btn { padding:9px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
-.primary { background:#2563eb; color:#fff; } 
-.success { background:#16a34a; color:#fff; }
-.secondary { background:#475569; color:#fff; } 
-.ghost { background:#e2e8f0; color:#2d3748; }
-.danger { background:#ef4444; color:#fff; }
+    --border: #24334b;
+    --border-light: #30425e;
 
-/* Preview */
-.preview-panel { max-height:78vh; overflow:auto; }
-.contrato { padding:22px; background:#fff; border:1px solid #ddd; font-family:"Times New Roman", serif; font-size:14pt; text-align:justify; line-height:1.6; min-height:300px; }
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-soft: rgba(59, 130, 246, 0.12);
 
-/* Estilo do contrato */
-.contrato .cabecalho { text-align:center; margin-bottom:18px; }
-.contrato .cabecalho img { max-height:70px; display:block; margin:0 auto 8px; }
-.contrato h1 { font-size:18px; letter-spacing:1px; margin-bottom:6px; }
-.contrato .clausula { margin:12px 0; text-indent: 1.2em; }
-.assinaturas { display:flex; justify-content:space-between; margin-top:42px; gap:12px; }
-.assinatura { width:48%; text-align:center; }
-.small-info { font-size:12px; color:#555; margin-top:8px; }
+    --success: #10b981;
+    --success-hover: #059669;
 
-/* Rodapé */
-footer.footer { text-align:center; padding:10px 0; background:#edf2f7; margin-top:12px; font-size:13px; }
+    --danger: #ef4444;
 
-/* Responsivo */
-@media (max-width:900px) { .grid { grid-template-columns: 1fr; } }
+    --text-main: #f1f5f9;
+    --text-secondary: #a5b4c8;
+    --text-muted: #71829b;
+
+    --radius: 14px;
+    --transition: 0.2s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "DM Sans", "Inter", Arial, sans-serif;
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(37, 99, 235, 0.10),
+            transparent 32%
+        ),
+        var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+.app-shell {
+    min-height: 100vh;
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+
+.topbar {
+    min-height: 76px;
+    padding: 12px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    background: rgba(10, 17, 31, 0.92);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(16px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-logo {
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2563eb, #0f3b91);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    box-shadow: 0 4px 18px rgba(37, 99, 235, 0.22);
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.brand-info strong {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.brand-info span {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+/* =========================================
+   BOTÕES
+   ========================================= */
+
+.btn {
+    min-height: 40px;
+    padding: 9px 15px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 15px;
+}
+
+.btn-outline {
+    background: #15233a;
+    border-color: var(--border-light);
+    color: var(--text-secondary);
+}
+
+.btn-outline:hover {
+    background: #1d304e;
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.btn-danger-outline {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+}
+
+.btn-danger-outline:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: var(--danger);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: #fff;
+    box-shadow: 0 5px 16px rgba(37, 99, 235, 0.20);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    box-shadow: 0 7px 20px rgba(37, 99, 235, 0.28);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    box-shadow: 0 5px 16px rgba(16, 185, 129, 0.16);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL
+   ========================================= */
+
+.main-container {
+    width: min(1500px, 92%);
+    margin: 0 auto;
+    padding: 38px 0 25px;
+}
+
+.page-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.eyebrow,
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #60a5fa;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 9px rgba(16, 185, 129, 0.6);
+}
+
+.page-heading h1 {
+    margin-top: 8px;
+    font-size: clamp(25px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.page-heading p {
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.heading-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.heading-badge span {
+    color: #60a5fa;
+    font-size: 16px;
+}
+
+/* =========================================
+   WORKSPACE E PAINÉIS
+   ========================================= */
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+    gap: 22px;
+}
+
+.panel {
+    min-width: 0;
+    overflow: hidden;
+
+    background: linear-gradient(145deg, #142137, #101a2c);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.form-panel {
+    padding: 25px;
+}
+
+.preview-panel {
+    position: sticky;
+    top: 96px;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.panel-heading h2 {
+    margin-top: 4px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+}
+
+.panel-heading p {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.panel-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+    background: var(--primary-soft);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+
+    color: #60a5fa;
+    font-size: 22px;
+}
+
+/* =========================================
+   FORMULÁRIO
+   ========================================= */
+
+.form-section {
+    margin-top: 27px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.step-number {
+    width: 33px;
+    height: 33px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--primary-soft);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 9px;
+
+    color: #60a5fa;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.section-heading h3 {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.section-heading p {
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.form-divider {
+    height: 1px;
+    margin: 25px 0;
+    background: var(--border);
+}
+
+.field-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.required {
+    color: #f87171;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 43px;
+    padding: 11px 13px;
+
+    background: var(--bg-input);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+
+    color: var(--text-main);
+    font-size: 12px;
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #62738d;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #46618a;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #101d32;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+input[type="date"] {
+    color-scheme: dark;
+}
+
+input[type="number"] {
+    font-variant-numeric: tabular-nums;
+}
+
+textarea {
+    min-height: 95px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 14px;
+}
+
+/* =========================================
+   AÇÕES DO FORMULÁRIO
+   ========================================= */
+
+.form-actions {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 11px;
+    margin-top: 28px;
+}
+
+.form-actions .btn {
+    min-height: 46px;
+    font-size: 12px;
+}
+
+.form-footnote {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-top: 13px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.form-footnote span {
+    color: #60a5fa;
+}
+
+/* =========================================
+   PRÉ-VISUALIZAÇÃO
+   ========================================= */
+
+.preview-heading {
+    padding: 24px 24px 18px;
+}
+
+.preview-status {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 10px;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 20px;
+
+    color: #6ee7b7;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.preview-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 11px 24px;
+    background: #0c1729;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.preview-area {
+    max-height: 850px;
+    min-height: 520px;
+    overflow: auto;
+
+    padding: 24px;
+    background: #0c1423;
+}
+
+/* DOCUMENTO A4 */
+
+.contrato {
+    width: 100%;
+    max-width: 595px;
+    min-height: 842px;
+
+    margin: 0 auto;
+    padding: 55px 48px;
+
+    background: #fff;
+    color: #222;
+
+    border-radius: 2px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.3);
+
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    text-align: justify;
+
+    overflow-wrap: break-word;
+}
+
+.empty-preview {
+    min-height: 700px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: #64748b;
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 18px;
+
+    background: #eff6ff;
+    border-radius: 17px;
+
+    color: #3b82f6;
+    font-size: 30px;
+}
+
+.empty-preview h3 {
+    color: #334155;
+    font-size: 16px;
+}
+
+.empty-preview p {
+    max-width: 300px;
+    margin-top: 9px;
+
+    color: #94a3b8;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ESTILIZAÇÃO DO DOCUMENTO */
+
+.contrato .cabecalho {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.contrato .cabecalho img {
+    max-height: 65px;
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 12px;
+}
+
+.contrato h1 {
+    margin-bottom: 12px;
+    color: #172033;
+
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.contrato hr {
+    border: none;
+    border-top: 1px solid #cbd5e1;
+}
+
+.contrato .clausula {
+    margin: 17px 0;
+    text-indent: 20px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.contrato .clausula strong {
+    color: #172033;
+}
+
+.contrato .assinaturas {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 65px;
+}
+
+.contrato .assinatura {
+    width: 48%;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.contrato .assinatura p {
+    margin: 5px 0;
+}
+
+.preview-info {
+    display: flex;
+    gap: 9px;
+    padding: 15px 22px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.preview-info span {
+    flex-shrink: 0;
+    color: #60a5fa;
+}
+
+/* =========================================
+   AVISO JURÍDICO
+   ========================================= */
+
+.legal-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-top: 22px;
+    padding: 17px 19px;
+
+    background: rgba(245, 158, 11, 0.06);
+    border: 1px solid rgba(245, 158, 11, 0.18);
+    border-radius: 11px;
+}
+
+.legal-icon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: rgba(245, 158, 11, 0.13);
+    border-radius: 50%;
+
+    color: #fbbf24;
+    font-weight: 800;
+}
+
+.legal-notice strong {
+    color: #fcd34d;
+    font-size: 12px;
+}
+
+.legal-notice p {
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* =========================================
+   RODAPÉ
+   ========================================= */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 35px;
+    padding: 22px 5%;
+
+    background: #090f1c;
+    border-top: 1px solid var(--border);
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-brand strong {
+    color: #60a5fa;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.footer-brand span {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.footer p {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.footer p span {
+    margin: 0 5px;
+    color: var(--primary);
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 1100px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .preview-panel {
+        position: static;
+    }
+
+    .preview-area {
+        max-height: 750px;
+    }
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        position: static;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px 4%;
+    }
+
+    .brand {
+        justify-content: center;
+    }
+
+    .topbar-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .topbar-actions .btn:last-child {
+        grid-column: span 2;
+    }
+
+    .main-container {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .heading-badge {
+        display: none;
+    }
+
+    .form-panel {
+        padding: 19px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-heading {
+        padding: 19px;
+    }
+
+    .preview-toolbar {
+        padding: 10px 15px;
+        font-size: 8px;
+    }
+
+    .preview-area {
+        padding: 12px;
+        min-height: 400px;
+    }
+
+    .contrato {
+        min-height: 600px;
+        padding: 30px 22px;
+        font-size: 10pt;
+    }
+
+    .empty-preview {
+        min-height: 500px;
+    }
+
+    .contrato .assinaturas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contrato .assinatura {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    .legal-notice {
+        padding: 14px;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+}
+
+@media (max-width: 380px) {
+    .brand-info strong {
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 9px 10px;
+        font-size: 10px;
+    }
+
+    .panel-heading h2 {
+        font-size: 17px;
+    }
+}
+
+/* =========================================
+   IMPRESSÃO
+   ========================================= */
+
+@media print {
+    body {
+        background: #fff;
+    }
+
+    .topbar,
+    .page-heading,
+    .form-panel,
+    .preview-heading,
+    .preview-toolbar,
+    .preview-info,
+    .legal-notice,
+    .footer {
+        display: none !important;
+    }
+
+    .main-container,
+    .workspace,
+    .preview-panel,
+    .preview-area {
+        display: block;
+        width: 100%;
+        max-height: none;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+        background: #fff;
+        border: none;
+        box-shadow: none;
+    }
+
+    .contrato {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        border: none;
+    }
+}
